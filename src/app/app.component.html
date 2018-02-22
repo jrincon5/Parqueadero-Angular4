@@ -1,21 +1,102 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container">
+  <br />
+  <nav class="nav justify-content-center">
+    <img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/yellow-road-sign-icons-signs/097018-yellow-road-sign-icon-signs-z-roadsign13.png" width="60" height="60" class="d-inline-block align-top" alt="">
+    <h1>
+      Bienvenido a {{ title }}!
+    </h1>
+  </nav>
+  <hr />
+  <div class="row">
+    <div class="col-md-8">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Placa</th>
+            <th scope="col">Tipo vehículo</th>
+            <th scope="col">Fecha de entrada</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let comprobante of comprobantes" [ngSwitch]="comprobante.tipoVehiculo">
+            <td>{{comprobante.placa}}</td>
+            <td>{{comprobante.tipoVehiculo}}</td>
+            <td>{{comprobante.fechaEntrada | date:'medium'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link" id="nav-contact-tab" routerLink="/ingresar">Ingresar vehículo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-contact-tab" routerLink="/sacar">Sacar vehículo</a>
+        </li>
+      </ul>
+      <hr />
+      <!--<form>
+        <div class="form-group row">
+          <label for="inputPlaca1" class="col-sm-4 col-form-label">Placa:</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="inputPlaca1" placeholder="Placa">
+          </div>
+        </div>
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-4 pt-0">Tipo de vehículo</legend>
+            <div class="col-sm-4">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                <label class="form-check-label" for="gridRadios1">
+                  Carro
+                </label>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                  <label class="form-check-label" for="gridRadios2">
+                    Moto
+                  </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <div class="form-group row">
+          <label for="inputCilindraje" class="col-sm-4 col-form-label">Cilindraje:</label>
+          <div class="col-sm-8">
+            <input type="number" class="form-control" id="inputCilindraje" placeholder="Cilindraje">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <button type="submit" class="btn btn-secondary">
+              <img width="20" height="20" alt="Angular Logo" src="http://icons.iconarchive.com/icons/hopstarter/soft-scraps/128/Folder-Add-icon.png">
+              Ingresar vehículo
+            </button>
+          </div>
+        </div>
+      </form>
+      <hr />
+      <form>
+        <div class="form-group row">
+          <label for="inputPlaca2" class="col-sm-4 col-form-label">Placa:</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="inputPlaca2" placeholder="Placa">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <button type="submit" class="btn btn-secondary">
+              <img width="20" height="20" alt="Angular Logo" src="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-5/128/Folder-Delete-icon.png">                
+              Sacar vehículo
+            </button>
+          </div>
+        </div>
+      </form>-->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
-<router-outlet></router-outlet>
