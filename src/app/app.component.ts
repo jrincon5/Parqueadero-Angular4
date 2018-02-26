@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VigilanteService } from './dashboard/vigilante.service';
-import { Comprobante } from './dashboard/model/Comprobante';
+import { Comprobante } from './dashboard/Comprobante';
 
 @Component({
   selector: 'app-root',
