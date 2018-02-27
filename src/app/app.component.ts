@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { VigilanteService } from './dashboard/vigilante.service';
-import { Comprobante } from './dashboard/Comprobante';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +9,7 @@ import { Comprobante } from './dashboard/Comprobante';
 })
 export class AppComponent implements OnInit{
 
-  private comprobantes: Comprobante[];
+  comprobantes: any[];
   title = 'Parqueadero Ceiba';
 
   constructor(private vigilanteService: VigilanteService) { }
@@ -20,12 +19,9 @@ export class AppComponent implements OnInit{
   }
 
   getAllComprobantes(){
-    this.vigilanteService.findAll().subscribe(
-      comprobantes => {
-        this.comprobantes = comprobantes;
-      },
-      err => {
-        console.log(err);
-      });
+    this.vigilanteService.findAll()
+    .subscribe(response => {
+      this.comprobantes = response.json();
+    });
   }
 }

@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { VigilanteService } from '../vigilante.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DatosComprobantePago } from '../DatosComprobantePago';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-sacar-vehiculo',
@@ -10,45 +10,37 @@ import { DatosComprobantePago } from '../DatosComprobantePago';
   styleUrls: ['./sacar-vehiculo.component.css'],
   providers: [VigilanteService]
 })
-export class SacarVehiculoComponent implements OnInit, OnDestroy {
+export class SacarVehiculoComponent implements OnInit {
 
-  private comprobante: DatosComprobantePago;
+  comprobante: any[];
   removeForm: FormGroup;
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private vigilanteService: VigilanteService) { }
+  constructor( private vigilanteService: VigilanteService,
+              private appComponent: AppComponent) { }
 
   ngOnInit() {
-
-    //this.getComprobante("");
     this.removeForm = new FormGroup({
       placa: new FormControl('', Validators.required)
     });
   }
 
-  ngOnDestroy(): void {
+  getComprobante(placa) {
+    this.vigilanteService.findComprobante(placa)
+    .subscribe(response => {
+      this.comprobante  = response.json();
+      debugger;
+      console.log('holi: ' + JSON.stringify(this.comprobante));
+    });
   }
 
   onSubmit(){
     if(this.removeForm.valid){
-      let placa: String = this.removeForm.controls['placa'].value;
+      let placa = this.removeForm.controls['placa'].value;
       this.vigilanteService.sacarVehiculo(placa).subscribe();
-      //this.getComprobante(placa);
-      alert('Vehículo removido');
       this.getComprobante(placa);
     }
+    alert('Vehículo removido');
     this.removeForm.reset();
-    window.location.reload();
-  }
-
-  getComprobante(placa: String){
-    this.vigilanteService.findComprobante(placa).subscribe(
-      comprobante =>{
-        this.comprobante=comprobante;
-      },
-      err => {
-        console.log(err);
-      });
+    this.appComponent.getAllComprobantes();
   }
 }

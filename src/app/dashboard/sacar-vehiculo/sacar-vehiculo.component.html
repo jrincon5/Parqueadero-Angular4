@@ -7,7 +7,7 @@
     </div>
     <div class="form-group row">
       <div class="col-sm-10">
-        <button type="submit" class="btn btn-secondary" [disabled]="!removeForm.valid">
+        <button id="refresh-btn-salir" type="submit" class="btn btn-secondary" [disabled]="!removeForm.valid">
           <img width="20" height="20" alt="Angular Logo" src="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-5/128/Folder-Delete-icon.png">                
           Sacar vehículo
         </button>
@@ -15,26 +15,30 @@
     </div>
     <br />
 </form>
-    <nav class="navbar navbar-light bg-light">
-      <div class="row">
-        <div class="col-md-2">
-          <img src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-4/128/Checklist-icon.png" width="30" height="30" alt=""/>
-        </div>
-        <div class="col-md-10">
-          <h5>Comprobante de pago</h5>
-        </div>
-      </div>
-    </nav>
-    <hr />
-    <div class="container">
-
-
-    <ul class="list-group list-group-flush" *ngIf="comprobante!=null">
-        <li class="list-group-item">Placa: {{comprobante.placaFk}}</li>
-        <li class="list-group-item">Fecha entrada: {{comprobante.fechaEntrada | date:'short'}}</li>
-        <li class="list-group-item">Fecha entrada: {{comprobante.fechaSalida | date:'short'}}</li>
-        <li class="list-group-item">Total horas: {{comprobante.totalHoras}}</li>
-        <li class="list-group-item">Total a pagar: {{comprobante.totalPagar}} $</li>
-      </ul>
+<nav class="navbar navbar-light bg-light" *ngIf="comprobante!=null">
+  <div class="row">
+    <div class="col-md-2">
+      <img src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-4/128/Checklist-icon.png" width="30" height="30" alt=""/>
     </div>
- 
+    <div class="col-md-10">
+      <h5>Comprobante de pago</h5>
+    </div>
+  </div>
+</nav>
+<hr />
+<div class="container">
+<ul class="list-group list-group-flush" *ngFor="let datos of comprobante">
+    <li class="list-group-item">Placa: {{datos.placaFk}}</li>
+    <li class="list-group-item">Fecha entrada: {{datos.fechaEntrada | date:'short'}}</li>
+    <li class="list-group-item">Fecha salida: {{datos.fechaSalida | date:'short'}}</li>
+    <li class="list-group-item">Total horas: {{datos.totalHoras}}</li>
+    <li class="list-group-item">Total a pagar: {{datos.totalPagar}} $</li>
+  </ul>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#refresh-btn-salir").on("click", function() {
+           $( "#table-vehiculos" ).load( "sacar-vehiculo.component.html #table-vehiculos" );
+        });
+    });
+  </script>

@@ -3,8 +3,6 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VigilanteService } from '../vigilante.service';
 import { AppComponent } from '../../app.component';
-import { Carro } from '../Carro';
-import { Moto } from '../Moto';
 import { DISABLED } from '@angular/forms/src/model';
 
 @Component({
@@ -38,32 +36,22 @@ export class IngresarVehiculoComponent implements OnInit, OnDestroy {
   onSubmit(){
     if(this.vehiculoForm.valid){
       if(this.tipoVehiculo=='Carro'){
-        let carro: Carro = new Carro
-        (this.vehiculoForm.controls['placa'].value);
-        this.vigilanteService.saveCar(carro).subscribe();
-        alert('Carro agregado');
+        let car = { 'placa': this.vehiculoForm.controls['placa'].value };
+        this.vigilanteService.saveCar(car).subscribe();
       }
       if(this.tipoVehiculo=='Moto'){
-        let moto: Moto = new Moto
-        (this.vehiculoForm.controls['placa'].value,
-        this.vehiculoForm.controls['cilindraje'].value);
+        let moto = { 'placa': this.vehiculoForm.controls['placa'].value,
+                      'cilindraje':  this.vehiculoForm.controls['cilindraje'].value };
         this.vigilanteService.saveMoto(moto).subscribe();
-        alert('Moto agregada');
       }
     }
+    alert('Vehículo agregado');
     this.appComponent.getAllComprobantes();
-    window.location.reload();
+    this.vehiculoForm.reset();
   }
 
   checkclic(val){
     console.log(val);
     this.tipoVehiculo=val;
-    /*if(this.tipoVehiculo=='Carro'){
-      this.vehiculoForm.patchValue({
-        cilindraje: {disabled:true}});
-    }else if(this.tipoVehiculo=='Moto'){
-      this.vehiculoForm.patchValue({
-        cilindraje: {disabled:false}});
-    }*/
   }
 }

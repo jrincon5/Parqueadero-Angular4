@@ -9,7 +9,7 @@
   <hr />
   <div class="row">
     <div class="col-md-8">
-      <table class="table table-striped">
+      <table class="table table-striped" id="table-vehiculos">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Placa</th>
@@ -18,7 +18,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let comprobante of comprobantes" [ngSwitch]="comprobante.tipoVehiculo">
+          <tr *ngFor="let comprobante of comprobantes">
             <td>{{comprobante.placa}}</td>
             <td>{{comprobante.tipoVehiculo}}</td>
             <td>{{comprobante.fechaEntrada | date:'medium'}}</td>
@@ -28,12 +28,12 @@
     </div>
     <div class="col-md-4">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link" id="nav-contact-tab" routerLink="/ingresar">Ingresar vehículo</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="nav-contact-tab" routerLink="/sacar">Sacar vehículo</a>
-        </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-contact-tab" routerLink="/ingresar">Ingresar vehículo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-contact-tab" routerLink="/sacar">Sacar vehículo</a>
+            </li>
       </ul>
       <hr />
       <router-outlet></router-outlet>
