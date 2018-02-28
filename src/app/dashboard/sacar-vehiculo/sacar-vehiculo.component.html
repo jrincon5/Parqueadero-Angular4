@@ -8,7 +8,7 @@
     <div class="form-group row">
       <div class="col-sm-10">
         <button id="refresh-btn-salir" type="submit" class="btn btn-secondary" [disabled]="!removeForm.valid">
-          <img width="20" height="20" alt="Angular Logo" src="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-5/128/Folder-Delete-icon.png">                
+          <i class="fas fa-minus"></i>
           Sacar vehículo
         </button>
       </div>
@@ -18,7 +18,7 @@
 <nav class="navbar navbar-light bg-light" *ngIf="comprobante!=null">
   <div class="row">
     <div class="col-md-2">
-      <img src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-4/128/Checklist-icon.png" width="30" height="30" alt=""/>
+        <i class="fas fa-clipboard-list tamano"></i>
     </div>
     <div class="col-md-10">
       <h5>Comprobante de pago</h5>
@@ -27,12 +27,12 @@
 </nav>
 <hr />
 <div class="container">
-<ul class="list-group list-group-flush" *ngFor="let datos of comprobante">
-    <li class="list-group-item">Placa: {{datos.placaFk}}</li>
-    <li class="list-group-item">Fecha entrada: {{datos.fechaEntrada | date:'short'}}</li>
-    <li class="list-group-item">Fecha salida: {{datos.fechaSalida | date:'short'}}</li>
-    <li class="list-group-item">Total horas: {{datos.totalHoras}}</li>
-    <li class="list-group-item">Total a pagar: {{datos.totalPagar}} $</li>
+<ul class="list-group list-group-flush" *ngIf="comprobante!=null">
+    <li class="list-group-item"><i class="fas fa-id-card"></i>      Placa: {{comprobante.placaFk}}</li>
+    <li class="list-group-item"><i class="far fa-calendar-alt"></i>     Fecha entrada: {{comprobante.fechaEntrada | date:'short'}}</li>
+    <li class="list-group-item"><i class="far fa-calendar-alt"></i>     Fecha salida: {{comprobante.fechaSalida | date:'short'}}</li>
+    <li class="list-group-item"><i class="far fa-clock"></i>      Total horas: {{comprobante.totalHoras}}</li>
+    <li class="list-group-item"><i class="far fa-money-bill-alt"></i>     Total a pagar: {{comprobante.totalPagar}} $</li>
   </ul>
 </div>
 <script>

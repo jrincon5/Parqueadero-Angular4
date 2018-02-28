@@ -19,21 +19,22 @@
         </thead>
         <tbody>
           <tr *ngFor="let comprobante of comprobantes">
-            <td>{{comprobante.placa}}</td>
-            <td>{{comprobante.tipoVehiculo}}</td>
-            <td>{{comprobante.fechaEntrada | date:'medium'}}</td>
+            <td><i class="fas fa-id-card"></i>      {{comprobante.placa}}</td>
+            <td *ngIf="comprobante.tipoVehiculo=='Carro'"><i class="fas fa-car"></i>      {{comprobante.tipoVehiculo}}</td>
+            <td *ngIf="comprobante.tipoVehiculo=='Moto'"><i class="fas fa-motorcycle"></i>      {{comprobante.tipoVehiculo}}</td>
+            <td><i class="far fa-calendar-alt"></i>      {{comprobante.fechaEntrada | date:'medium'}}</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="col-md-4">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link" id="nav-contact-tab" routerLink="/ingresar">Ingresar vehículo</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="nav-contact-tab" routerLink="/sacar">Sacar vehículo</a>
-            </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-contact-tab" routerLink="/ingresar">Ingresar vehículo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-contact-tab" routerLink="/sacar">Sacar  vehículo</a>
+        </li>
       </ul>
       <hr />
       <router-outlet></router-outlet>

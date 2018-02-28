@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { VigilanteService } from '../vigilante.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AppComponent } from '../../app.component';
 
@@ -14,6 +13,7 @@ export class SacarVehiculoComponent implements OnInit {
 
   comprobante: any[];
   removeForm: FormGroup;
+  errores: any;
 
   constructor( private vigilanteService: VigilanteService,
               private appComponent: AppComponent) { }
@@ -24,22 +24,18 @@ export class SacarVehiculoComponent implements OnInit {
     });
   }
 
-  getComprobante(placa) {
-    this.vigilanteService.findComprobante(placa)
-    .subscribe(response => {
-      this.comprobante  = response.json();
-      debugger;
-      console.log('holi: ' + JSON.stringify(this.comprobante));
-    });
-  }
-
   onSubmit(){
     if(this.removeForm.valid){
       let placa = this.removeForm.controls['placa'].value;
-      this.vigilanteService.sacarVehiculo(placa).subscribe();
-      this.getComprobante(placa);
+      this.vigilanteService.sacarVehiculo(placa)
+      .subscribe( response => {
+        this.comprobante = response.json();
+        alert('Vehículo removido');
+      },(error: Response) => {
+        this.errores = error.json();
+        alert(this.errores.message);
+      });
     }
-    alert('Vehículo removido');
     this.removeForm.reset();
     this.appComponent.getAllComprobantes();
   }

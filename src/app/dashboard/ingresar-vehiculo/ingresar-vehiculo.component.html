@@ -11,6 +11,7 @@
         <div class="col-sm-4">
           <div class="form-check">
             <input class="form-check-input" formControlName="gridRadios" (click)="checkclic('Carro')" type="radio" name="gridRadios" id="gridRadios1" value="option1">
+            <i class="fas fa-car"></i>
             <label class="form-check-label" for="gridRadios1">
               Carro
             </label>
@@ -19,9 +20,10 @@
         <div class="col-sm-4">
           <div class="form-check">
             <input class="form-check-input" formControlName="gridRadios" (click)="checkclic('Moto')" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-              <label class="form-check-label" for="gridRadios2">
-                Moto
-              </label>
+            <i class="fas fa-motorcycle"></i>
+            <label class="form-check-label" for="gridRadios2">
+              Moto
+            </label>
           </div>
         </div>
       </div>
@@ -35,7 +37,7 @@
     <div class="form-group row">
       <div class="col-sm-10">
         <button id="refresh-btn-ingresar" type="submit" class="btn btn-secondary" [disabled]="!vehiculoForm.valid">
-          <img width="20" height="20" alt="Angular Logo" src="http://icons.iconarchive.com/icons/hopstarter/soft-scraps/128/Folder-Add-icon.png">
+          <i class="fas fa-plus"></i>
           Ingresar vehículo
         </button>
       </div>
@@ -47,4 +49,4 @@
              $( "#table-vehiculos" ).load( "ingresar-vehiculo.component.html #table-vehiculos" );
           });
       });
-    </script>
+  </script>

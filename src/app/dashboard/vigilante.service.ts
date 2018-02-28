@@ -11,16 +11,11 @@ export class VigilanteService {
   private apiSaveCar = 'http://localhost:8090/parqueadero/agregarcarro';
   private apiSaveMoto = 'http://localhost:8090/parqueadero/agregarmoto';
   private apiRemove = 'http://localhost:8090/parqueadero/removervehiculo';
-  private apiComprobante = 'http://localhost:8090/parqueadero/consultarcomprobante';
 
   constructor(private http: Http) { }
 
   findAll(){
     return this.http.get(this.apiSearch);
-  }
-
-  findComprobante(placa){
-    return this.http.get(this.apiComprobante, placa);
   }
 
   saveCar(carro) {
