@@ -28,7 +28,7 @@
         </div>
       </div>
     </fieldset>
-    <div class="form-group row">
+    <div class="form-group row" *ngIf="disable">
       <label for="inputCilindraje" class="col-sm-4 col-form-label">Cilindraje:</label>
       <div class="col-sm-8">
         <input type="number" class="form-control" formControlName="cilindraje" id="inputCilindraje" placeholder="Cilindraje">

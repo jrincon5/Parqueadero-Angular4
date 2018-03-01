@@ -20,7 +20,8 @@ export class SacarVehiculoComponent implements OnInit {
 
   ngOnInit() {
     this.removeForm = new FormGroup({
-      placa: new FormControl('', Validators.required)
+      placa: new FormControl('', [Validators.required,
+        Validators.minLength(6),Validators.maxLength(6)])
     });
   }
 

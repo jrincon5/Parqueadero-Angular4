@@ -13,8 +13,9 @@ export class IngresarVehiculoComponent implements OnInit, OnDestroy {
 
   vehiculoForm: FormGroup;
   tipoVehiculo: String;
-  disable: boolean = true;
+  disable: boolean;
   errores: any;
+  radioCheck: any;
 
   constructor(private vigilanteService: VigilanteService,
               private appComponent: AppComponent) { }
@@ -34,41 +35,48 @@ export class IngresarVehiculoComponent implements OnInit, OnDestroy {
   onSubmit(){
     if(this.vehiculoForm.valid){
       if(this.tipoVehiculo=='Carro'){
-        let car = { 'placa': this.vehiculoForm.controls['placa'].value };
-        this.vigilanteService.saveCar(car)
-        .subscribe(response => {
-          alert('Carro agregado');
-        },
-        (error: Response) => {
-          this.errores = error.json();
-          alert(this.errores.message);
-        });
+        this.entrandoCarro();
       }
       if(this.tipoVehiculo=='Moto'){
-        let moto = { 'placa': this.vehiculoForm.controls['placa'].value,
-                      'cilindraje':  this.vehiculoForm.controls['cilindraje'].value};
-        this.vigilanteService.saveMoto(moto)
-        .subscribe(response => {
-          alert('Moto agregada');
-        },
-        (error: Response) => {
-          this.errores = error.json();
-          alert(this.errores.message);
-        });
+        this.entrandoMoto();
       }
     }
     this.appComponent.getAllComprobantes();
     this.vehiculoForm.reset();
   }
 
+  entrandoCarro(){
+    let car = { 'placa': this.vehiculoForm.controls['placa'].value };
+    this.vigilanteService.saveCar(car)
+    .subscribe(response => {
+      alert('Carro agregado');
+    },
+    (error: Response) => {
+      this.errores = error.json();
+      alert(this.errores.message);
+    });
+  }
+
+  entrandoMoto(){
+    let moto = { 'placa': this.vehiculoForm.controls['placa'].value,
+                  'cilindraje':  this.vehiculoForm.controls['cilindraje'].value};
+    this.vigilanteService.saveMoto(moto)
+    .subscribe(response => {
+      alert('Moto agregada');
+    },
+    (error: Response) => {
+      this.errores = error.json();
+      alert(this.errores.message);
+    });
+  }
+
   checkclic(val){
-    console.log(val);
     this.tipoVehiculo=val;
     if(this.tipoVehiculo=='Carro'){
-      this.vehiculoForm.patchValue({cilindraje: '',enable:true});
+      this.disable=false;
     }
     if(this.tipoVehiculo=='Moto'){
-      this.vehiculoForm.patchValue({cilindraje: '',enable:false});
+      this.disable=true;
     }
   }
 }
