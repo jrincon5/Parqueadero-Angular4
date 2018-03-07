@@ -15,9 +15,10 @@ export class AppComponent implements OnInit{
   constructor(private vigilanteService: VigilanteService) { }
 
   ngOnInit() {
-    setInterval(() =>{
-      this.getAllComprobantes();
-    },1000);
+    this.getAllComprobantes();
+    //setInterval(() =>{
+    //  this.getAllComprobantes();
+    //},1000);
   }
 
   getAllComprobantes(){

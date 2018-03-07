@@ -28,7 +28,7 @@
 <hr />
 <div class="container">
 <ul class="list-group list-group-flush" *ngIf="comprobante!=null">
-    <li class="list-group-item"><i class="fas fa-id-card"></i>      Placa: {{comprobante.placaFk}}</li>
+    <li class="list-group-item"><i class="fas fa-id-card"></i>      Placa: {{comprobante.placa}}</li>
     <li class="list-group-item"><i class="far fa-calendar-alt"></i>     Fecha entrada: {{comprobante.fechaEntrada | date:'short'}}</li>
     <li class="list-group-item"><i class="far fa-calendar-alt"></i>     Fecha salida: {{comprobante.fechaSalida | date:'short'}}</li>
     <li class="list-group-item"><i class="far fa-clock"></i>      Total horas: {{comprobante.totalHoras}}</li>

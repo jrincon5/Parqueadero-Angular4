@@ -41,7 +41,7 @@ export class IngresarVehiculoComponent implements OnInit, OnDestroy {
         this.entrandoMoto();
       }
     }
-    this.appComponent.getAllComprobantes();
+    //this.appComponent.getAllComprobantes();
     this.vehiculoForm.reset();
   }
 
@@ -50,6 +50,7 @@ export class IngresarVehiculoComponent implements OnInit, OnDestroy {
     this.vigilanteService.saveCar(car)
     .subscribe(response => {
       alert('Carro agregado');
+      this.appComponent.getAllComprobantes();
     },
     (error: Response) => {
       this.errores = error.json();
@@ -63,6 +64,7 @@ export class IngresarVehiculoComponent implements OnInit, OnDestroy {
     this.vigilanteService.saveMoto(moto)
     .subscribe(response => {
       alert('Moto agregada');
+      this.appComponent.getAllComprobantes();
     },
     (error: Response) => {
       this.errores = error.json();

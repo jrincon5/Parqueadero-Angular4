@@ -32,12 +32,12 @@ export class SacarVehiculoComponent implements OnInit {
       .subscribe( response => {
         this.comprobante = response.json();
         alert('Vehículo removido');
+        this.appComponent.getAllComprobantes();
       },(error: Response) => {
         this.errores = error.json();
         alert(this.errores.message);
       });
     }
     this.removeForm.reset();
-    this.appComponent.getAllComprobantes();
   }
 }
